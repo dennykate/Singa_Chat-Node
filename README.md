@@ -73,7 +73,7 @@ Step two - Install dependencies .
 Step three - Running the project
 
 ```bash
- npm run dev 
+ npm run start 
 ```
 
 After the installation process, please copy the URL shown below and paste it into your browser.
