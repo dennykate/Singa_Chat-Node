@@ -62,7 +62,6 @@ export const updateMessageService = async (data) => {
   const message = await MessageModel.findById(data.messageId);
 
   if (!message) {
-    console.log("Message not found");
     return;
   }
 

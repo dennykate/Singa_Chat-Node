@@ -25,10 +25,8 @@ const initializeSocket = (server) => {
   io.on("connection", (socket) => {
     global.chatSocket = socket;
 
-    console.log(`User connected: ${socket.id}`);
 
     socket.on("disconnect", () => {
-      console.log(`User disconnected: ${socket.id}`);
       for (let [userId, socketId] of onlineUsers.entries()) {
         if (socketId === socket.id) {
           onlineUsers.delete(userId);
@@ -45,12 +43,10 @@ const initializeSocket = (server) => {
     // Initialize chat
     socket.on("init-chat", (userId) => {
       onlineUsers.set(userId, socket.id);
-      console.log(`User ${userId} connected with socket ID: ${socket.id}`);
     });
 
     // Send Message
     socket.on("send-message", async (data) => {
-      console.log("socket id => ", socket.id);
       const message = await createMessageService(data);
 
       if (message) {
@@ -82,7 +78,6 @@ const initializeSocket = (server) => {
         const deleteMessage = await deleteMessageService(messageId);
 
         if (!deleteMessage) {
-          console.error("Message not found for deletion:", messageId);
           return;
         }
 
