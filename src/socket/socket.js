@@ -15,8 +15,9 @@ import { findUserService } from "../services/user.service.js";
 const initializeSocket = (server) => {
   const io = new Server(server, {
     cors: {
-      origin: "*",
-      methods: ["GET", "POST"],
+      origin: "*", // Allow all origins
+      methods: ["GET", "POST"], // Allow specific methods
+      allowedHeaders: ["Authorization"], // Allow specific headers if necessary
     },
   });
 
@@ -24,7 +25,6 @@ const initializeSocket = (server) => {
 
   io.on("connection", (socket) => {
     global.chatSocket = socket;
-
 
     socket.on("disconnect", () => {
       for (let [userId, socketId] of onlineUsers.entries()) {
