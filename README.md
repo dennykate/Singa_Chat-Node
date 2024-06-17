@@ -101,6 +101,10 @@ To run this project, you will need to run the following command in your project 
 
 - Delete and Update message
 
+- Message Notification
+  
+- New User Notification
+
 
 
 
